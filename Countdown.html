@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+ 
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0f0f2d, #1a1b40);
+      color: #ffffff;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .coming-soon {
+      text-align: center;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    #countdown div {
+      text-align: center;
+    }
+
+    #countdown span {
+      display: block;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    #countdown small {
+      font-size: 14px;
+    }
+
+    .circle {
+      position: absolute;
+      background: linear-gradient(145deg, #3b4e8b, #2a3b5f);
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.7;
+    }
+
+    .circle-1 {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      left: 20%;
+    }
+
+    .circle-2 {
+      width: 150px;
+      height: 150px;
+      top: 20%;
+      right: 25%;
+    }
+
+    .circle-3 {
+      width: 250px;
+      height: 250px;
+      bottom: 10%;
+      left: 15%;
+    }
+
+    .circle-4 {
+      width: 100px;
+      height: 100px;
+      bottom: 5%;
+      right: 20%;
+    }
+
+    .circle-5 {
+      width: 180px;
+      height: 180px;
+      top: 40%;
+      right: 10%;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .circle {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="coming-soon">
+    <main>
+      <h2>Something great is on the way</h2>
+      <h1>COMING SOON</h1>
+      <div id="countdown">
+        <div><span id="days">00</span><small>Days</small></div>
+        <div><span id="hours">00</span><small>Hours</small></div>
+        <div><span id="minutes">00</span><small>Minutes</small></div>
+        <div><span id="seconds">00</span><small>Seconds</small></div>
+      </div>
+    </main>
+
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
+    <div class="circle circle-5"></div>
+  </div>
+
+  <script>
+    const targetDate = new Date().getTime() + (24 * 60 * 60 * 1000); 
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days.toString().padStart(2, "0");
+      document.getElementById("hours").innerText = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
